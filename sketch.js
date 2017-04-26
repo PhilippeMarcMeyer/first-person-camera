@@ -3,8 +3,8 @@ var img = [];
 var carousel;
 
 function preload() {
-  img.push(loadImage('nature.jpg'));
-  img.push(loadImage('nature2.jpg'));
+  img.push(loadImage('assets/nature.jpg'));
+  img.push(loadImage('assets/nature2.jpg'));
 }
 
 function setup() {
