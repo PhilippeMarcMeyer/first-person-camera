@@ -15,10 +15,14 @@ function navCamera() {
   this.update = function() {
     this.checkInput();
 
-    camera(this.x, this.y, this.z);
-    //rotateX(-PI/2 + (PI)  * (this.yRotation / height));
+    //camera(this.x, this.y, this.z);
+    //translate(-this.x, -this.y, -this.z)
+
+    translate(0, 0, 1000);
     rotateY(-PI/2 + (PI)  * (this.xRotation / width));
-  }
+    //rotateX(-PI/2 + (PI)  * (this.yRotation / height));
+    translate(-cam.x, -cam.y, -cam.z)
+    }
 
   this.checkInput = function() {
     //key input
