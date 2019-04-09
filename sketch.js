@@ -1,34 +1,60 @@
-var cam;
-var cam2;
-var img = [];
-var carousel;
-
-function preload() {
-  img.push(loadImage('assets/nature.jpg'));
-  img.push(loadImage('assets/nature2.jpg'));
-  //img.push(loadImage('assets/wall.jpg'));
-}
+let cam;
+let cam2;
+let img = [];
+let imagesToLoad = ['assets/nature.jpg','assets/nature2.jpg'];
+let nrOfImagesToLoad = imagesToLoad.length;
+let carousel;
+let imagesLoaded = false;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight, WEBGL);
+	cam = new navCamera();
+	cam2 = new cameraFPS();
+	carousel = new Carousel();
+	
+	 let promises = [];
+	 let nrOfImagesLoaded = 0;
+	 let promise1 = new Promise(function(resolve, reject) {
+			let temp;
+			loadImage(imagesToLoad[0], function(temp) {
+			let loadedImg = temp.get();
+			if(loadedImg){
+				img.push(loadedImg);
+				resolve();
+			}
+		});
+	
+	});
+	
+	let promise2 = new Promise(function(resolve, reject) {
+			let temp;
+			loadImage(imagesToLoad[1], function(temp) {
+			let loadedImg = temp.get();
+			if(loadedImg){
+				img.push(loadedImg);
+				resolve();
+			}
+		});
+	
+	});
+	
+	Promise.all([promise1, promise2]).then(function(values) {
+		createCanvas(windowWidth, windowHeight, WEBGL);
 
-  cam = new navCamera();
-  cam2 = new cameraFPS();
-  carousel = new carousel();
+		imagesLoaded = true;
+	});
+
 }
 
 function draw() {
-  background(200);
-  cam.update();
-  //cam2.draw();
-  carousel.update();
-
-  //texture(img[2]);
-  //fill(255, 255, 0);
-  //box(5000, 10, 5000);
+	if(imagesLoaded){
+	background(200);
+		//cam.update();
+	  cam2.draw();
+	  carousel.update();
+	}
 }
 
-function carousel() {
+function Carousel() {
   // setup 8 boxes in a caraousel
 
   this.total = 4;
@@ -37,8 +63,8 @@ function carousel() {
   this.update = function() {
     this.centerX = 0;
     this.centerY = 0;
-    for (var i = 0; i < this.total; i++) {
-      var x = (Math.cos(i / this.total * TWO_PI) * this.radius),
+    for ( let i = 0; i < this.total; i++) {
+       let x = (Math.cos(i / this.total * TWO_PI) * this.radius),
           z = (Math.sin(i / this.total * TWO_PI) * this.radius),
           y = 0;
 

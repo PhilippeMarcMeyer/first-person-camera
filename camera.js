@@ -26,16 +26,16 @@ function navCamera() {
 
   this.checkInput = function() {
     //key input
-    if(keyIsDown(87)) { // W
+    if(keyIsDown(87)||keyIsDown(UP_ARROW)) { // W
       this.z -= 10;
     }
-    if(keyIsDown(83)) { //S
+    if(keyIsDown(83)||keyIsDown(DOWN_ARROW)) { //S
       this.z += 10;
     }
-    if(keyIsDown(65)) { //A
+    if(keyIsDown(65)||keyIsDown(LEFT_ARROW)) { //A
       this.x -= 10;
     }
-    if(keyIsDown(68)) { //D
+    if(keyIsDown(68)||keyIsDown(RIGHT_ARROW)) { //D
       this.x += 10;
     }
 

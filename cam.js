@@ -60,18 +60,19 @@ function cameraFPS() {
 
     this.prevMouse = createVector(this.mouse.x, this.mouse.y);
 
-    if (keyIsDown(65)) this.velocity.add(p5.Vector.mult(this.x, this.speed));
-		if (keyIsDown(68)) this.velocity.sub(p5.Vector.mult(this.x, this.speed));
-		if (keyIsDown(87)) this.velocity.add(p5.Vector.mult(this.z, this.speed));
-		if (keyIsDown(83)) this.velocity.sub(p5.Vector.mult(this.z, this.speed));
-		if (keyIsDown(81)) this.velocity.add(p5.Vector.mult(this.y, this.speed));
-		if (keyIsDown(69)) this.velocity.sub(p5.Vector.mult(this.y, this.speed));
+    if (keyIsDown(65) || keyIsDown(UP_ARROW)) this.velocity.add(p5.Vector.mult(this.x, this.speed));
+	if (keyIsDown(68) || keyIsDown(DOWN_ARROW )) this.velocity.sub(p5.Vector.mult(this.x, this.speed));
+	if (keyIsDown(87) || keyIsDown(LEFT_ARROW)) this.velocity.add(p5.Vector.mult(this.z, this.speed));
+	if (keyIsDown(83) || keyIsDown(RIGHT_ARROW)) this.velocity.sub(p5.Vector.mult(this.z, this.speed));
+	if (keyIsDown(81)) this.velocity.add(p5.Vector.mult(this.y, this.speed)); //Q
+	if (keyIsDown(69)) this.velocity.sub(p5.Vector.mult(this.y, this.speed)); //E
 
     this.velocity.mult(this.friction);
     this.position.add(this.velocity);
-    this.center = p5.Vector.add(this.position, this.z);
+    //this.center = p5.Vector.add(this.position, this.z);
 
-    camera(this.position.x, this.position.y, this.position.z);
+  camera(this.position.x, this.position.y, this.position.z);
+	// camera(this.position.x, this.position.y, this.position.z,this.center.x,this.center.y,this.center.z);
     //rotateX(this.center.y);
     //rotateY(this.center.x);
     //rotateZ(this.center.z);
