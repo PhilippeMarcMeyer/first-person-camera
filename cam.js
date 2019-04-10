@@ -22,12 +22,8 @@ function cameraFPS() {
     perspective(60 / 180 * PI, width/height, 0.01, 1000);
 
     if(!this.controllable) return;
-
-    this.mouse = createVector(mouseX, mouseY);
-    if (this.prevMouse == null) this.prevMouse = createVector(mouseX, mouseY);
-
+	  
     var w = windowWidth;
-    var h = windowHeight;
 
     if (keyIsDown(65) || keyIsDown(UP_ARROW)) this.velocity.add(p5.Vector.mult(this.x, this.speed));
 	if (keyIsDown(68) || keyIsDown(DOWN_ARROW )) this.velocity.sub(p5.Vector.mult(this.x, this.speed));
