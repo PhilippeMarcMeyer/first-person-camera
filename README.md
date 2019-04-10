@@ -1,3 +1,5 @@
 # first-person-camera
 
-running at https://maximilian-r.github.io/first-person-camera/
+## Original Code by maximilian-r  (99%)
+
+https://PhilippeMarcMeyer.github.io/first-person-camera/
